@@ -1,0 +1,22 @@
+.col-sm-1
+.col-sm-2#navbar
+  %ul.nav.nav-pills.nav-stacked
+    %li.nav-link
+      = link_to 'Home', root_path
+    %li.nav-link
+      = link_to 'Location', '#'
+    %li.nav-link.dropdown
+      = link_to 'Make an Appointment <span class="caret"></span>'.html_safe, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }
+      %ul.nav.nav-pills.nav-stacked.hidden_menu
+        %li.nav-link
+          = link_to 'Repair', '#'
+        %li.nav-link
+          = link_to 'Check Up', '#'
+    %li.nav-link
+      = link_to 'About Us', '#'
+
+:javascript
+  $('.dropdown').click(function() {
+    var element = $('> .hidden_menu', this);
+    element.slideToggle(500);
+  });
