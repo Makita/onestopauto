@@ -1,0 +1,13 @@
+.col-sm-1#affixed{ data: { spy: 'affix' } }
+  = link_to "Back to Top", '#', id: 'back_to_top'
+
+:javascript
+  $('#affixed').affix({
+    offset: {
+      top: $(window).height() * 0.1
+    }
+  });
+  
+  $('#back_to_top').click(function() {
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+  });
