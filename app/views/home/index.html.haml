@@ -32,14 +32,3 @@
           Ut aeque malorum eos, discere saperet offendit ius ut. Reprimique dissentias cu sit. Feugait corrumpit vituperatoribus per ei, habeo meliore concludaturque ut mel. Facete iracundia te nam, sea ut vide erat intellegam. Pri in vide minimum inciderint, ex maiorum inciderint eos. At enim habeo libris nam, consulatu imperdiet cu mei.
     .col-sm-1#affixed{ data: { spy: 'affix' } }
       = link_to "Back to Top", '#', id: 'back_to_top'
-
-:javascript
-  $('#affixed').affix({
-    offset: {
-      top: $(window).height() * 0.1
-    }
-  });
-  
-  $('#back_to_top').click(function() {
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
-  });
