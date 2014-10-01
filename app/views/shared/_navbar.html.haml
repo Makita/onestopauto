@@ -17,3 +17,8 @@
   %hr
   #footer
     &copy; 2014 Sakura Web
+
+:javascript
+  $('.dropdown').click(function() {
+    $('> .hidden_menu', this).slideToggle('slow');
+  });

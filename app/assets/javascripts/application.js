@@ -16,10 +16,6 @@
 //= require_tree .
 
 $(window).load(function() {
-  $('.dropdown').click(function() {
-    $('> .hidden_menu', this).slideToggle('slow');
-  });
-
   $('#affixed').affix({
     offset: {
       top: $(window).height() * 0.1
