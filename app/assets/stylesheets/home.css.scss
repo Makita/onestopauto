@@ -8,9 +8,19 @@
 #content_box {
   font-family: 'Droid Sans';
   padding-top: 1%;
+  padding-bottom: 70px;
 
   hr {
     width: 50%;
     size: 2;
   }
+}
+
+#affixed.affix-top {
+  margin-top: -1000px;
+}
+
+#affixed.affix {
+  bottom: 50px;
+  right: 16.6666666%;
 }
