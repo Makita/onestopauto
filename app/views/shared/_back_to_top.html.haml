@@ -1,5 +1,6 @@
 .col-sm-1#affixed{ data: { spy: 'affix' } }
-  = link_to "Back to Top", '#', id: 'back_to_top'
+  %button.btn.btn-primary{ type: 'button', id: 'back_to_top' }
+    Back to Top
 
 :javascript
   $('#affixed').affix({
