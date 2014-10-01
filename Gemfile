@@ -15,6 +15,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
 
 group :development, :test do
   gem 'better_errors'
