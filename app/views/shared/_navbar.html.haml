@@ -9,9 +9,9 @@
       = link_to 'Make an Appointment <span class="caret"></span>'.html_safe, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }
       %ul.nav.nav-pills.nav-stacked.hidden_menu
         %li.nav-link
-          = link_to 'Repair', '#'
+          = link_to 'Repair', new_appointment_path(type: 'repair')
         %li.nav-link
-          = link_to 'Check Up', '#'
+          = link_to 'Check Up', new_appointment_path(type: 'checkup')
     %li.nav-link
       = link_to 'About Us', about_path
   %hr

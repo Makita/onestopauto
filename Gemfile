@@ -19,6 +19,9 @@ gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'
 
+gem 'indefinite_article'
+gem 'calendar_date_select'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
