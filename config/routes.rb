@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'location', to: 'home#location'
   get 'about', to: 'home#about'
 
-  scope 'appointment' do
-    get ':type', to: 'appointment#new', as: 'new_appointment'
-  end
+  resources :appointments, only: [:create, :show]
+  get 'appointments/new/:type', to: 'appointments#new', as: 'new_appointments'
 end

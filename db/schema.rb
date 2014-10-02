@@ -11,6 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20141002051709) do
+
+  create_table "appointments", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "vehicle_make"
+    t.integer  "vehicle_year"
+    t.text     "vehicle_issue"
+    t.string   "billing_address"
+    t.string   "billing_phone"
+    t.string   "card_number"
+    t.string   "csc"
+    t.string   "cardholder_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

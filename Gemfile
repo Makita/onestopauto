@@ -21,6 +21,7 @@ gem 'capistrano-bundler'
 
 gem 'indefinite_article'
 gem 'calendar_date_select'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'better_errors'
