@@ -6,9 +6,6 @@ class Appointment < ActiveRecord::Base
   validates :vehicle_year, presence: true, numericality: { only_integer: true, greater_than: 1800, less_than_or_equal_to: Time.new.year }
   validates :billing_address, presence: true
   validates :billing_phone, presence: true
-  validates :card_number, presence: true
-  validates :csc, presence: true, numericality: { only_integer: true, greater_than: 99, less_than: 10000 }, length: { in: 3..4 }
-  validates :cardholder_name, presence: true
 
   validate :vehicle_issue_presence_when_repairing
 

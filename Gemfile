@@ -23,6 +23,7 @@ gem 'indefinite_article'
 gem 'calendar_date_select'
 gem 'bootstrap_form'
 gem 'bcrypt'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development, :test do
   gem 'better_errors'

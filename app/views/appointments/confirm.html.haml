@@ -1,0 +1,44 @@
+%h2.spaced_header Confirm the details below
+%table.table.table-hover
+  %tr
+    %th Field
+    %th Value
+  - @attributes.each do |name, value|
+    - unless name == 'vehicle_issue' and @appointment.appointment_type == 'checkup'
+      %tr
+        %td= name.titleize
+        %td= value_format(name, value)
+
+= form_for @appointment, url: appointments_path do |f|
+  %script{ src: 'https://checkout.stripe.com/checkout.js' }
+
+  = f.hidden_field :appointment_type
+  = f.hidden_field :first_name
+  = f.hidden_field :last_name
+  = f.hidden_field :billing_address
+  = f.hidden_field :billing_phone
+  = f.hidden_field :vehicle_make
+  = f.hidden_field :vehicle_year
+  - if @appointment.appointment_type != 'checkup'
+    = f.hidden_field :vehicle_issue
+  %button.btn.btn-primary#custom_button Make Appointment
+
+  :javascript
+    var handler = StripeCheckout.configure({
+      key: "#{Rails.application.secrets.stripe_publishable_key}",
+      token: function(token) {
+        var tokenInput = $('<input type="hidden" name="stripeToken" />').val(token.id);
+        var emailInput = $('<input type="hidden" name="stripeEmail" />').val(token.email);
+        $('form').append(tokenInput).append(emailInput).submit();
+      }
+    });
+
+    document.getElementById('custom_button').addEventListener('click', function(e) {
+      handler.open({
+        name: 'One Stop Auto and Hitch',
+        description: 'Confirmation ($5.00)',
+        amount: 500,
+        currency: 'cad'
+      });
+      e.preventDefault();
+    });

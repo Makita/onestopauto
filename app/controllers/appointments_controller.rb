@@ -5,13 +5,33 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
   end
 
+  def confirm
+    @appointment = Appointment.new(appointment_params)
+
+    if @appointment.invalid?
+      render :new
+      return
+    end
+
+    @attributes = @appointment.attributes.except('id', 'created_at', 'updated_at')
+  end
+
   def create
     @appointment = Appointment.new(appointment_params)
+    @customer = Stripe::Customer.create(email: params[:stripeEmail], card: params[:stripeToken])
+    @charge = Stripe::Charge.create(customer: @customer.id, amount: 500, description: 'Appointment Confirmation Payment', currency: 'cad')
+
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
-      render :new
+      @attributes = @appointment.attributes.except('id', 'created_at', 'updated_at')
+      render :confirm
     end
+
+  rescue Stripe::CardError => e
+    @attributes = @appointment.attributes.except('id', 'created_at', 'updated_at')
+    flash[:error] = e.message
+    render :confirm
   end
 
   def show
@@ -26,8 +46,6 @@ class AppointmentsController < ApplicationController
     @confirmation_details[:vehicle_issue]    = @appointment.vehicle_issue
     @confirmation_details[:billing_address]  = @appointment.billing_address
     @confirmation_details[:billing_phone]    = @appointment.billing_phone
-    @confirmation_details[:card_number]      = @appointment.card_number
-    @confirmation_details[:cardholder_name]  = @appointment.cardholder_name
   end
   
   private
@@ -39,6 +57,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_type, :first_name, :last_name, :vehicle_make, :vehicle_year, :vehicle_issue, :billing_address, :billing_phone, :card_number, :csc, :cardholder_name)
+    params.require(:appointment).permit(:appointment_type, :first_name, :last_name, :vehicle_make, :vehicle_year, :vehicle_issue, :billing_address, :billing_phone)
   end
 end

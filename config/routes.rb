@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :appointments, only: [:create, :show]
   get 'appointments/new/:type', to: 'appointments#new', as: 'new_appointments'
+  post 'appointment/confirm', to: 'appointments#confirm', as: 'confirm_appointment'
 
   scope '/admin' do
     get '', to: 'admin#index', as: 'admin'

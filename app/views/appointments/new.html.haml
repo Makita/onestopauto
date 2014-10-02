@@ -1,21 +1,16 @@
 %h2 Make #{ @type.capitalize.indefinitize } Appointment
-= bootstrap_form_for @appointment, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
+= bootstrap_form_for @appointment, url: confirm_appointment_path, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
   = f.hidden_field :appointment_type, value: @type
 
-  %h4 Personal Information
+  %h4 Contact Information
   = f.text_field :first_name, placeholder: 'First Name'
   = f.text_field :last_name, placeholder: 'Last Name', help: 'In the case of multiple last names, please enter the one you most identify by.'
+  = f.text_field :billing_address, label: 'Address', placeholder: 'Billing Address'
+  = f.telephone_field :billing_phone, label: 'Phone Number', placeholder: 'Phone Number'
 
   %h4 Vehicle Information
   = f.text_field :vehicle_make, label: 'Make', placeholder: 'Vehicle Make'
   = f.number_field :vehicle_year, label: 'Year', placeholder: 'Vehicle Production Year'
   - if @type != 'checkup'
     = f.text_area :vehicle_issue, label: 'Issue', placeholder: 'What problems have you noticed?'
-
-  %h4 Billing Information
-  = f.text_field :billing_address, placeholder: 'Billing Address'
-  = f.telephone_field :billing_phone, placeholder: 'Phone Number'
-  = f.text_field :card_number, placeholder: 'Card Number'
-  = f.number_field :csc, label: 'CSC', placeholder: 'Card Security Code', help: 'This is usually found as a set of three numbers on the back of your card.'
-  = f.text_field :cardholder_name, label: 'Name on Card', placeholder: 'Cardholder Name'
-  = f.submit 'Schedule Appointment', class: 'btn btn-primary'
+  = f.submit 'Submit', class: 'btn btn-primary'
