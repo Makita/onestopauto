@@ -15,8 +15,6 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    redirect_to new_appointments_path(type: 'repair') unless !request.referrer.blank? and (/\/appointments\/new/ =~ URI(request.referrer).path) == 0
-
     @appointment = Appointment.find(params[:id])
 
     @confirmation_details = HashWithIndifferentAccess.new
