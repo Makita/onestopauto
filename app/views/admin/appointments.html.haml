@@ -1,0 +1,24 @@
+%table.table.table-hover
+  %tr
+    %th
+    %th Vehicle
+    %th
+    %th Contact Information
+    %th
+    %th
+  %tr
+    %th Name
+    %th Make
+    %th Year
+    %th Address
+    %th Phone
+    %th
+  - @appointments.each do |appointment|
+    - issue = appointment.vehicle_issue || ''
+    %tr
+      %td= appointment.name
+      %td= appointment.vehicle_make
+      %td= appointment.vehicle_year
+      %td= appointment.billing_address
+      %td= number_to_phone(appointment.billing_phone)
+      %td= link_to 'Details', appointment_path(appointment)

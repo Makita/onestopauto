@@ -22,6 +22,7 @@ gem 'capistrano-bundler'
 gem 'indefinite_article'
 gem 'calendar_date_select'
 gem 'bootstrap_form'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'better_errors'

@@ -1,4 +1,5 @@
 class Appointment < ActiveRecord::Base
+  validates :appointment_type, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :vehicle_make, presence: true
@@ -11,11 +12,13 @@ class Appointment < ActiveRecord::Base
 
   validate :vehicle_issue_presence_when_repairing
 
-  attr_accessor :type # Not a database attribute
-
   def vehicle_issue_presence_when_repairing
-    if type == 'repair' and vehicle_issue.blank?
+    if appointment_type == 'repair' and vehicle_issue.blank?
       errors.add(:vehicle_issue, "can't be blank when making a repair appointment")
     end
+  end
+
+  def name
+    "#{last_name}, #{first_name}"
   end
 end

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002051709) do
+ActiveRecord::Schema.define(version: 20141002120037) do
+
+  create_table "admins", force: true do |t|
+    t.string   "username"
+    t.string   "password_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "appointments", force: true do |t|
     t.string   "first_name"
@@ -26,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141002051709) do
     t.string   "cardholder_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "appointment_type"
   end
 
   create_table "posts", force: true do |t|

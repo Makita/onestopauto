@@ -1,6 +1,6 @@
 %h2 Make #{ @type.capitalize.indefinitize } Appointment
 = bootstrap_form_for @appointment, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
-  = f.hidden_field :type, value: @type
+  = f.hidden_field :appointment_type, value: @type
 
   %h4 Personal Information
   = f.text_field :first_name, placeholder: 'First Name'
@@ -16,6 +16,6 @@
   = f.text_field :billing_address, placeholder: 'Billing Address'
   = f.telephone_field :billing_phone, placeholder: 'Phone Number'
   = f.text_field :card_number, placeholder: 'Card Number'
-  = f.number_field :csc, placeholder: 'Card Security Code', help: 'This is usually found as a set of three numbers on the back of your card.'
+  = f.number_field :csc, label: 'CSC', placeholder: 'Card Security Code', help: 'This is usually found as a set of three numbers on the back of your card.'
   = f.text_field :cardholder_name, label: 'Name on Card', placeholder: 'Cardholder Name'
   = f.submit 'Schedule Appointment', class: 'btn btn-primary'

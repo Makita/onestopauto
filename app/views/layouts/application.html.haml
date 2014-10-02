@@ -6,12 +6,23 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
-.container-fluid
-  .row#banner
-    .col-sm-12
-      This is a placeholder
-  .row#navbar_row
-    = render partial: 'shared/navbar'
-    .col-sm-6#content_box
-      = yield
-    = render partial: 'shared/back_to_top'
+%body
+  .container-fluid
+    .row#banner
+      .col-sm-12
+        This is a placeholder
+    .row#navbar_row
+      = render partial: 'shared/navbar'
+      .col-sm-6#content_box
+        - if flash[:success]
+          .alert.alert-success
+            = link_to '&times;'.html_safe, '#', class: 'close', data: { dismiss: 'alert' }
+            = flash[:success]
+            - flash.delete(:success)
+        - if flash[:error]
+          .alert.alert-danger.alert-error
+            = link_to '&times;'.html_safe, '#', class: 'close', data: { dismiss: 'alert' }
+            = flash[:error]
+            - flash.delete(:error)
+        = yield
+      = render partial: 'shared/back_to_top'

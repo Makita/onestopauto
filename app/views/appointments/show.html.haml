@@ -4,6 +4,7 @@
     %th Field
     %th Value
   - @confirmation_details.each do |name, value|
-    %tr
-      %td= name.titleize
-      %td= value_format(name, value)
+    - unless name == 'vehicle_issue' and @appointment.appointment_type == 'checkup'
+      %tr
+        %td= name.titleize
+        %td= value_format(name, value)

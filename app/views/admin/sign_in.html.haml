@@ -1,0 +1,5 @@
+%h3.spaced_header Log in
+= bootstrap_form_for @admin, url: authenticate_path, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-10' do |f|
+  = f.text_field :username, placeholder: 'Username'
+  = f.password_field :password_hash, label: 'Password', placeholder: 'Password'
+  = f.submit 'Log In', class: 'btn btn-primary pull-right'

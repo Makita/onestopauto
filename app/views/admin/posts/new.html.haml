@@ -1,0 +1,4 @@
+= bootstrap_form_for @post, url: admin_posts_path, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
+  = f.text_field :title, placeholder: 'Title'
+  = f.text_area :body, label: 'Content', placeholder: 'Content', style: 'height: 400px'
+  = f.submit 'Create Post', class: 'btn btn-primary pull-right'

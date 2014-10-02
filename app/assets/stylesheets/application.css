@@ -15,3 +15,10 @@
  *= require_tree .
  *= require_self
  */
+textarea {
+  min-height: 100px;
+}
+
+.spaced_header {
+  margin-bottom: 20px;
+}
