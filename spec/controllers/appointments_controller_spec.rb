@@ -7,4 +7,8 @@ RSpec.describe AppointmentsController, :type => :controller do
       expect(response.status).to render_template(:new)
     end
   end
+
+  describe 'GET new' do
+    it 'does something'
+  end
 end
