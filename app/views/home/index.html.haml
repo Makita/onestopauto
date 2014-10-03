@@ -1,4 +1,6 @@
-- @posts.each do |post|
+- @posts.each_with_index do |post, i|
   .article
+    - if i > 0
+      %hr
     %h3= post.title
     %p= post.body.html_safe

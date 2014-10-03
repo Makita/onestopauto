@@ -51,11 +51,11 @@ html, body, .container-fluid { height: 100%; }
 
     li.nav-link {
       &:first-child {
-        box-shadow: inset 0px 4px 15px -10px #428bca;
+        border-top: 1px solid #8FD8FF;
       }
 
       &:last-child {
-        box-shadow: inset 0px -4px 15px -10px #428bca;
+        border-bottom: 1px solid #8FD8FF;
       }
     }
   }
