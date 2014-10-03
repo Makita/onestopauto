@@ -4,7 +4,7 @@ class Admin < ActiveRecord::Base
   include BCrypt
 
   validates :username, presence: true
-  validates :password, presence: true
+  validates :password_hash, presence: true
 
   def password
     @password ||= Password.new(password_hash)
