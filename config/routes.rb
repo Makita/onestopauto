@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :appointments, only: [:create, :show]
   get 'appointments/new/:type', to: 'appointments#new', as: 'new_appointments'
   post 'appointment/confirm', to: 'appointments#confirm', as: 'confirm_appointment'
+  get 'check_appointment_hours', to: 'appointments#check_appointment_hours', as: 'check_appointment_hours'
+  get 'check_appointment_minutes', to: 'appointments#check_appointment_minutes', as: 'check_appointment_minutes'
 
   scope '/admin' do
     get '', to: 'admin#index', as: 'admin'

@@ -24,10 +24,12 @@ gem 'calendar_date_select'
 gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'holidays'
 
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails', '~> 4.0'
 end

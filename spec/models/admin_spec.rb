@@ -6,8 +6,10 @@ RSpec.describe Admin, :type => :model do
 
   subject { @admin }
 
-  it { should validate_presence_of :username }
-  it { should respond_to :password }
+  it {
+    should validate_presence_of :username
+    should respond_to :password
+  }
 
   context "when username is empty" do
     it { should_not be_valid }

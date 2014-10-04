@@ -9,6 +9,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.invalid?
+      flash[:error] = 'Failed to create appointment.'
       render :new
       return
     end
@@ -25,6 +26,7 @@ class AppointmentsController < ApplicationController
       redirect_to appointment_path(@appointment)
     else
       @attributes = @appointment.attributes.except('id', 'created_at', 'updated_at')
+      raise StandardError
       render :confirm
     end
 
@@ -44,8 +46,29 @@ class AppointmentsController < ApplicationController
     @confirmation_details[:vehicle_make]     = @appointment.vehicle_make
     @confirmation_details[:vehicle_year]     = @appointment.vehicle_year
     @confirmation_details[:vehicle_issue]    = @appointment.vehicle_issue
-    @confirmation_details[:billing_address]  = @appointment.billing_address
-    @confirmation_details[:billing_phone]    = @appointment.billing_phone
+    @confirmation_details[:address]          = @appointment.address
+    @confirmation_details[:phone_number]     = @appointment.phone_number
+    @confirmation_details[:date]             = @appointment.date
+    @confirmation_details[:time]             = @appointment.time
+  end
+
+  def check_appointment_hours
+    get_appointment_times
+
+    @appointment_times.each { |time| @result << time.hour }
+
+    # Check if hours are completely filled so we don't check in the javascript
+    @result = @result.group_by { |x| x }.select { |k, v| v.size > 1 }.map(&:first)
+
+    render json: @result.to_json
+  end
+
+  def check_appointment_minutes
+    get_appointment_times
+
+    @appointment_times.each { |time| @result << time.min if time.hour == params[:hour].to_i }
+
+    render json: @result.to_json
   end
   
   private
@@ -57,6 +80,11 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_type, :first_name, :last_name, :vehicle_make, :vehicle_year, :vehicle_issue, :billing_address, :billing_phone)
+    params.require(:appointment).permit(:appointment_type, :first_name, :last_name, :vehicle_make, :vehicle_year, :vehicle_issue, :address, :phone_number, :date, :time)
+  end
+
+  def get_appointment_times
+    @appointment_times = Appointment.where(date: Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)).map { |x| x.time }
+    @result = Array.new
   end
 end

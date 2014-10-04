@@ -15,10 +15,12 @@
   = f.hidden_field :appointment_type
   = f.hidden_field :first_name
   = f.hidden_field :last_name
-  = f.hidden_field :billing_address
-  = f.hidden_field :billing_phone
+  = f.hidden_field :address
+  = f.hidden_field :phone_number
   = f.hidden_field :vehicle_make
   = f.hidden_field :vehicle_year
+  = f.hidden_field :date
+  = f.hidden_field :time
   - if @appointment.appointment_type != 'checkup'
     = f.hidden_field :vehicle_issue
   %button.btn.btn-primary#custom_button Make Appointment
@@ -36,7 +38,7 @@
     document.getElementById('custom_button').addEventListener('click', function(e) {
       handler.open({
         name: 'One Stop Auto and Hitch',
-        description: 'Confirmation ($5.00)',
+        description: 'Confirmation Payment ($5.00)',
         amount: 500,
         currency: 'cad'
       });
