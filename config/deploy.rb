@@ -45,15 +45,7 @@ namespace :deploy do
     end
   end
 
-  desc 'Move the config/secrets.yml file'
-  task :move_secrets do
-    on roles(:app), in: :sequence, wait: 5 do
-      put File.read("config/secrets.yml"), "#{current_path}/config/secrets.yml"
-    end
-  end
-
-  after :publishing, :move_secrets
-  after :move_secrets, :restart
+  after :publishing, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
