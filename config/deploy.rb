@@ -45,7 +45,15 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart
+  desc 'Move the config/secrets.yml file'
+  task :move_secrets do
+    on roles(:app), in: :sequence, wait: 5 do
+      upload "#{Rails.root}/config/secrets.yml", "#{current_path}/config/secrets.yml"
+    end
+  end
+
+  after :publishing, :move_secrets
+  after :move_secrets, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
