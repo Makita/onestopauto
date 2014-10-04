@@ -20,5 +20,6 @@
 *.swp
 *.swo
 
-# Ignore the secrets.yml file
+# Ignore important files
+config/database.yml
 config/secrets.yml

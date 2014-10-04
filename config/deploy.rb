@@ -48,7 +48,7 @@ namespace :deploy do
   desc 'Move the config/secrets.yml file'
   task :move_secrets do
     on roles(:app), in: :sequence, wait: 5 do
-      upload "#{Rails.root}/config/secrets.yml", "#{current_path}/config/secrets.yml"
+      put File.read("config/secrets.yml"), "#{current_path}/config/secrets.yml"
     end
   end
 
