@@ -38,6 +38,17 @@ set :user, 'root'
 
 namespace :deploy do
 
+  desc 'Precompile assets'
+  task :precompile_assets do
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'assets:precompile'
+        end
+      end
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -45,7 +56,8 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart
+  after :publishing, :precompile_assets
+  after :precompile_assets, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
