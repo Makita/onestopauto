@@ -7,7 +7,7 @@
       = link_to 'Location', location_path
     %li.nav-link.dropdown
       = link_to 'Make an Appointment <span class="caret"></span>'.html_safe, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }
-      %ul.nav.nav-pills.nav-stacked.hidden_menu
+      %ul.nav.nav-pills.nav-stacked.hidden_menu.well.well-sm
         %li.nav-link
           = link_to 'Repair', new_appointments_path(type: 'repair')
         %li.nav-link
@@ -20,9 +20,6 @@
         = link_to 'Admin Panel', admin_path
       %li.nav-link
         = link_to 'Log Out', sign_out_path
-  %hr
-  #footer
-    &copy; 2014 Sakura Web
 
 :javascript
   $('.dropdown').click(function() {

@@ -1,11 +1,13 @@
 %table.table.table-hover
   %tr
     %th Name
+    %th Time
     %th Vehicle
     %th
   - @appointments.each do |appointment|
     - issue = appointment.vehicle_issue || ''
     %tr
       %td= appointment.name
+      %td= "#{format_date(appointment.date)} at #{format_time(appointment.time)}"
       %td= appointment.vehicle
       %td= link_to 'Details', appointment_path(appointment)

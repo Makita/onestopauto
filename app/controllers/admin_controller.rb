@@ -23,7 +23,7 @@ class AdminController < ApplicationController
   end
 
   def appointments
-    @appointments = Appointment.all
+    @appointments = Appointment.all.order(:date, :time)
   end
 
   private

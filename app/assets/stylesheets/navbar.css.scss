@@ -45,15 +45,5 @@ html, body, .container-fluid { height: 100%; }
 
   .hidden_menu {
     display: none;
-
-    li.nav-link {
-      &:first-child {
-        border-top: 1px solid #8FD8FF;
-      }
-
-      &:last-child {
-        border-bottom: 1px solid #8FD8FF;
-      }
-    }
   }
 }

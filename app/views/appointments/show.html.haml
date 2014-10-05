@@ -1,10 +1,13 @@
-%h2 Appointment created <small>Confirm the details below</small>
-%table.table.table-hover
-  %tr
-    %th Field
-    %th Value
-  - @confirmation_details.each do |name, value|
-    - unless name == 'vehicle_issue' and @appointment.appointment_type == 'checkup'
-      %tr
-        %td= name.titleize
-        %td= value_format(name, value)
+- if Time.now < @appointment.created_at + 10.seconds or current_admin
+  %h2 Appointment created <small>Confirm the details below</small>
+  %table.table.table-hover
+    %tr
+      %th Field
+      %th Value
+    - @confirmation_details.each do |name, value|
+      - unless name == 'vehicle_issue' and @appointment.appointment_type == 'checkup'
+        %tr
+          %td= name.titleize
+          %td= value_format(name, value)
+- else
+  %h2 This appointment may not be viewed

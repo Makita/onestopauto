@@ -3,6 +3,7 @@
 %head
   %title One Stop Auto and Hitch
   = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Delius+Swash+Caps'
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
@@ -10,7 +11,12 @@
   .container-fluid
     .row#banner
       .col-sm-12
-        This is a placeholder
+        %h1= link_to 'One Stop Auto and Hitch', root_path
+      .col-sm-12.car_procession
+        .car_procession1
+        .car_procession2
+        .car_procession3
+        .car_procession4
     .row#navbar_row
       = render partial: 'shared/navbar'
       .col-sm-6#content_box
