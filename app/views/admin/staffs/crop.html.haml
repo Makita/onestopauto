@@ -1,0 +1,28 @@
+= bootstrap_form_for @staff, url: admin_staff_path(@staff), layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
+  - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
+    = f.hidden_field attribute, id: attribute
+  .col-sm-12
+    = image_tag @staff.image.url, id: 'cropbox'
+  .col-sm-12.spaced_header_top
+    = f.submit 'Crop', class: 'btn btn-primary'
+
+- x, y, w, h = @staff.crop_select 
+- select = [x, y, x + w, y + h].to_s 
+
+:javascript
+  $(function() { 
+    $('#cropbox').Jcrop({ 
+      onChange: update_crop,
+      onSelect: update_crop,
+      boxWidth: 650,
+      setSelect: #{select.html_safe}, 
+      aspectRatio: 9 / 12
+    }); 
+  }); 
+
+  function update_crop(coords) {
+    $("#crop_x").val(coords.x); 
+    $("#crop_y").val(coords.y); 
+    $("#crop_w").val(coords.w); 
+    $("#crop_h").val(coords.h); 
+  }

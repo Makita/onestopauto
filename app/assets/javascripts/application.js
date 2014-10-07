@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.Jcrop
 //= require_tree .
 function pad(n) {
   return (n < 10) ? ("0" + n) : n;

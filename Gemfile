@@ -26,6 +26,9 @@ gem 'bcrypt'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'holidays'
 
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'papercrop'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'

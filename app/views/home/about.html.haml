@@ -1,16 +1,11 @@
 .container-fluid
-  .col-sm-12.profile
-    .col-sm-4.profile_picture
-      =image_tag 'ev215a.png'
-    .col-sm-8.profile_description
-      %h4 Position
-      %p
-        Lorem ipsum dolor sit amet, alii iuvaret dissentiunt mea ea, vel ne quod intellegat repudiandae. Facete efficiantur vis at, suas posse homero eos an. Ut mei partem eirmod similique, ad has ignota appareat qualisque. His in inciderint suscipiantur. Mei petentium molestiae ne, eum et graecis blandit conclusionemque. Sea ex malorum reformidans, ne accusam adipisci tincidunt per.
-  %hr
-  .col-sm-12.profile
-    .col-sm-4.profile_picture
-      =image_tag 'ev215a.png'
-    .col-sm-8.profile_description
-      %h4 Position
-      %p
-        Lorem ipsum dolor sit amet, alii iuvaret dissentiunt mea ea, vel ne quod intellegat repudiandae. Facete efficiantur vis at, suas posse homero eos an. Ut mei partem eirmod similique, ad has ignota appareat qualisque. His in inciderint suscipiantur. Mei petentium molestiae ne, eum et graecis blandit conclusionemque. Sea ex malorum reformidans, ne accusam adipisci tincidunt per.
+  - @staff.each_with_index do |staff, i|
+    - if i != 0
+      %hr
+    .col-sm-12.profile
+      .col-sm-4.profile_picture
+        = image_tag staff.image.url(:cropped)
+      .col-sm-8.profile_description
+        %h4= staff.name
+        %h4= staff.position
+        %p= staff.description

@@ -1,0 +1,3 @@
+%h2= "Staff <small>#{link_to 'Add new', new_admin_staff_path}</small>".html_safe
+- @staff.each do |staff|
+  %p= link_to staff.name, edit_admin_staff_path(staff)

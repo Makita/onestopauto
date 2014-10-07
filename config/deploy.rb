@@ -38,6 +38,13 @@ set :user, 'root'
 
 namespace :deploy do
 
+  desc 'Build missing Paperclip styles'
+  task :build_missing_paperclip_styles do
+    on roles(:app) do
+      execute "cd #{release_path}; RAILS_ENV=production bundle exec rake paperclip:refresh:missing_styles"
+    end
+  end
+
   desc 'Precompile assets'
   task :precompile_assets do
     on roles(:app), in: :sequence, wait: 5 do
@@ -56,6 +63,7 @@ namespace :deploy do
     end
   end
 
+  after :compile_assets, :building_missing_paperclip_styles
   after :publishing, :precompile_assets
   after :precompile_assets, :restart
 

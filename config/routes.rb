@@ -20,5 +20,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :posts, except: [:show]
+    resources :staffs, except: [:show], path: 'staff' do
+      get 'crop', on: :member
+    end
   end
 end

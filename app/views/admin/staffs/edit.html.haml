@@ -1,0 +1,11 @@
+= bootstrap_form_for @staff, url: admin_staff_path(@staff), layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
+  %label.col-sm-3.control-label
+    = "Current image [#{ link_to 'Crop', crop_admin_staff_path(@staff) }]".html_safe
+  .col-sm-9.scroll_overflow
+    = image_tag @staff.image.url(:cropped)
+  = f.file_field :image
+  = f.text_field :name, placeholder: 'Name'
+  = f.text_field :position, placeholder: 'Position'
+  = f.text_area :description, placeholder: 'Description'
+  = f.submit 'Update Staff Member', class: 'btn btn-primary pull-right'
+= button_to 'Delete Staff Member', admin_staff_path(@staff), method: :delete, class: 'btn btn-default pull-left', data: { confirm: 'Delete this staff member?' }

@@ -1,0 +1,6 @@
+= bootstrap_form_for @staff, url: admin_staffs_path, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9' do |f|
+  = f.file_field :image
+  = f.text_field :name, placeholder: 'Name'
+  = f.text_field :position, placeholder: 'Position'
+  = f.text_area :description, placeholder: 'Description'
+  = f.submit 'Add Staff Member', class: 'btn btn-primary'
